@@ -322,7 +322,7 @@
             <div class="portfolio-item padd-15">
               <div class="portfolio-item-inner shadow-dark">
                 <div class="portfolio-img">
-                  <img src="images/portfolio/portfolio-1.jpg" alt="">
+                  <img src="assets/gif/meal.gif" alt="">
                 </div>
               </div>
             </div>
@@ -331,7 +331,7 @@
              <div class="portfolio-item padd-15">
               <div class="portfolio-item-inner shadow-dark">
                 <div class="portfolio-img">
-                  <img src="images/portfolio/portfolio-2.jpg" alt="">
+                  <img src="assets/gif/education.gif" alt="">
                 </div>
               </div>
             </div>
@@ -419,35 +419,32 @@
           <h3 class="contact-title padd-15">SEND ME AN EMAIL</h3>
           <h4 class="contact-sub-title padd-15">I'M VERY RESPONSIVE TO MESSAGES</h4>
           <!-- ====== Contact Form ====== -->
-          <iframe name="hidden_iframe" id="hidden_iframe" style="display: none"
-        onload="if(submitted){if(check){alert('Feedback Successfully submitted!!! \nThanks for your Valuable Feedback :)'); window.location='index.html';}}"></iframe>
-
-          <form action="https://docs.google.com/forms/u/2/d/e/1FAIpQLScN-dt0GdachwPWNkOjMYpPi-rCxOMkM0gImkI8UkjbURkB_Q/formResponse" target="hidden_iframe" onsubmit="submitted=true; check=funcheck();" method="POST" target="_self"> 
+          <form id="my-form" method="post" autocomplete="off" name="google-sheet"> 
             <div class="row">
               <div class="contact-form padd-15">
                 <div class="row">
                   <div class="form-item col-6 padd-15">
                     <div class="form-group">
-                      <input type="text" id="name" class="form-control" placeholder="Name" name="entry.150607468" autocomplete="off" required>
+                      <input type="text" class="form-control" placeholder="Name" name="name" autocomplete="off" required>
                     </div>
                   </div>
                   <div class="form-item col-6 padd-15">
                     <div class="form-group">
-                      <input type="email" id="mailid" class="form-control" placeholder="Email" name="entry.1580072678" autocomplete="off" required>
+                      <input type="email" id="mailid" class="form-control" placeholder="Email" name="email" autocomplete="off" required>
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-item col-12 padd-15">
                     <div class="form-group">
-                      <input type="text" id="Subject" class="form-control" placeholder="Subject" name="entry.1535987874">
+                      <input type="text" id="Subject" class="form-control" placeholder="Subject" name="subject">
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-item col-12 padd-15">
                     <div class="form-group">
-                      <textarea class="form-control" id="feedback"  placeholder="Message" name="entry.1145234977"></textarea>
+                      <textarea class="form-control" id="feedback"  placeholder="Message" name="message"></textarea>
                     </div>
                   </div>
                 </div>
@@ -489,25 +486,33 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js" referrerpolicy="no-referrer"></script>
   <script src="js/script.js"></script>
   <script src="js/style-switcher.js"></script>
-
   <script>
-    var submitted = false;
-    var check=false;
+    const scriptURL =
+    'https://script.google.com/macros/s/AKfycbzNWH5WGrFRp3zamNDqr6P_VnxhIEt4xjbTJVaN__y7PldH7gE7lEbOg0gg1uuLhsYuVQ/exec'
+    const form = document.forms['google-sheet']
 
-    var fname=document.getElementById("name").value;
-    var fmail=document.getElementById("mailid").value;
-    var ffeedback=document.getElementById("feedback").value;
-    var Subject = document.getElementById("subject").value;
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, {
+          method: 'POST',
+          body: new FormData(form)
+        })
+        .then(response => Swal.fire("Thanks for Contacting!", "I will reply back to you soon", "success"))
+        .catch(error => console.error('Error!', error.message))
 
-
-     function funcheck(){
-        if(!(fname=="" || fmail=="" || ffeedback=="")){
-            return alert("Please enter valid data");
-        }
-        else{
-            return true;
-        }
-    }
+        setTimeout(
+        function()
+        {
+        //do something special
+         $('#my-form')[0].reset().delay(1000);
+        }, 5000);
+       
+       
+    })
+     
   </script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.5/dist/sweetalert2.all.min.js"></script>
 </body>
 </html> 
