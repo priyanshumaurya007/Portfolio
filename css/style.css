@@ -507,7 +507,15 @@ h3.my-profession
     flex: 0 0 50%;
     max-width: 50%;
     margin-top: 30px;
+    transition: all .3s ease;
 }
+
+.about .about-content .education:hover,
+.about .about-content .experience:hover
+{
+    transform: scale(1.05);
+}
+
 .about .about-content h3.title 
 {
     font-size: 24px;
