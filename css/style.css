@@ -692,6 +692,46 @@ h3.my-profession
     width: 100%;
     display: block;
 }
+
+.container1 {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    display: none;
+    transition: .3s ease;
+    background-color: rgba(40, 40, 40, 0.7);
+  }
+  
+  .container1:hover .overlay {
+    opacity: 1;
+    display: block;
+  }
+
+  .icon {
+    color: white;
+    font-size: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  
+  
+  
 /* contact */
 .contact-title
 {
